@@ -248,7 +248,6 @@ function resetFilters() {
   document.querySelector('input[name="rating"][value="0"]').checked = true;
   document.getElementById('sortSelect').value = 'featured';
   document.getElementById('globalSearch').value = '';
-  document.getElementById('heroSearch').value = '';
   document.getElementById('sectionTitle').textContent = 'جميع المنتجات';
   renderProducts();
 }
@@ -264,20 +263,8 @@ function filterByCategory(cat) {
 
 // ===== SEARCH =====
 function initSearch() {
-  document.getElementById('heroSearch').addEventListener('input', e => {
-    searchQuery = e.target.value;
-    document.getElementById('globalSearch').value = e.target.value;
-    renderProducts();
-  });
-
   document.getElementById('globalSearch').addEventListener('input', e => {
     searchQuery = e.target.value;
-    document.getElementById('heroSearch').value = e.target.value;
-    renderProducts();
-  });
-
-  document.getElementById('heroSearchBtn').addEventListener('click', () => {
-    searchQuery = document.getElementById('heroSearch').value;
     renderProducts();
   });
 }

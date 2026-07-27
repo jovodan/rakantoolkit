@@ -224,7 +224,13 @@
 .stats-bar {
   background: var(--cosmic-surface);
   border-bottom: 1px solid var(--cosmic-border);
-  padding: 1rem 0;
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.store-hero-stats {
+  background: linear-gradient(135deg, #0a0e27, #1a1040, #0d1b3e);
+  border-bottom: 1px solid var(--cosmic-border);
 }
 
 .stats-bar .container {
