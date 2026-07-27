@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر - RaKaN Digital Store</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+  <link rel="stylesheet" href="../css/store.css">
+</head>
+<body class="store-body">
+
+  <!-- HEADER -->
+  <header class="header store-header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaN<span>Store</span></a>
+
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="store.html" class="active">المتجر</a>
+        <a href="islamic.html" data-i18n="nav_islamic">إسلاميات</a>
+        <a href="calculators.html" data-i18n="nav_calculators">الحاسبات</a>
+        <a href="images.html" data-i18n="nav_images">الصور</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="store-search">
+          <input type="text" id="globalSearch" placeholder="ابحث عن منتج...">
+          <button>&#128269;</button>
+        </div>
+        <div class="cart-btn" id="cartBtn">
+          <span>&#128722;</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="store-hero">
+    <div class="stars"></div>
+    <div class="nebula"></div>
+    <div class="hero-content">
+      <h1>المتجر الرقمي</h1>
+      <p>اكتشف منتجات رقمية مميزة بأفضل الأسعار</p>
+      <div class="hero-search">
+        <input type="text" id="heroSearch" placeholder="ابحث عن ألعاب، برامج، قسائم...">
+        <button id="heroSearchBtn">&#128269; بحث</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stat-item">
+        <span class="stat-num" id="totalProducts">0</span>
+        <span class="stat-label">منتج</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">علامة تجارية</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">دعم فني</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">أصلي</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="store-main">
+    <div class="container store-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="store-sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <h3>الأقسام</h3>
+          <button class="close-sidebar" id="closeSidebar">&times;</button>
+        </div>
+
+        <div class="filter-group">
+          <h4>الفئة</h4>
+          <ul class="category-list" id="categoryList">
+            <li class="active" data-category="all">
+              <span class="cat-icon">&#127760;</span>
+              <span>الكل</span>
+              <span class="cat-count" id="countAll">0</span>
+            </li>
+            <li data-category="games">
+              <span class="cat-icon">&#127918;</span>
+              <span>ألعاب</span>
+              <span class="cat-count" id="countGames">0</span>
+            </li>
+            <li data-category="software">
+              <span class="cat-icon">&#128187;</span>
+              <span>برامج</span>
+              <span class="cat-count" id="countSoftware">0</span>
+            </li>
+            <li data-category="giftcards">
+              <span class="cat-icon">&#127873;</span>
+              <span>قسائم هدايا</span>
+              <span class="cat-count" id="countGiftcards">0</span>
+            </li>
+            <li data-category="subscriptions">
+              <span class="cat-icon">&#128276;</span>
+              <span>اشتراكات</span>
+              <span class="cat-count" id="countSubscriptions">0</span>
+            </li>
+            <li data-category="courses">
+              <span class="cat-icon">&#128218;</span>
+              <span>دورات تعليمية</span>
+              <span class="cat-count" id="countCourses">0</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4>نطاق السعر</h4>
+          <div class="price-filter">
+            <input type="range" id="priceRange" min="0" max="500" value="500">
+            <div class="price-labels">
+              <span>$0</span>
+              <span id="priceMax">$500</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>النوع</h4>
+          <ul class="type-list">
+            <li class="active" data-type="all">الكل</li>
+            <li data-type="global">عالمي</li>
+            <li data-type="region">منطقة محددة</li>
+            <li data-type="original">أصلي</li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4>التقييم</h4>
+          <div class="rating-filter">
+            <label class="rating-option">
+              <input type="radio" name="rating" value="0" checked>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span>الكل</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="rating" value="4">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+              <span>4+</span>
+            </label>
+            <label class="rating-option">
+              <input type="radio" name="rating" value="3">
+              <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+              <span>3+</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- PRODUCTS AREA -->
+      <div class="store-content">
+        <div class="content-header">
+          <div class="header-left">
+            <button class="filter-toggle" id="filterToggle">&#9776; الفلاتر</button>
+            <h2 id="sectionTitle">جميع المنتجات</h2>
+            <span class="result-count" id="resultCount">0 منتج</span>
+          </div>
+          <div class="header-right">
+            <div class="sort-box">
+              <label>ترتيب حسب:</label>
+              <select id="sortSelect">
+                <option value="featured">المميزة</option>
+                <option value="newest">الأحدث</option>
+                <option value="price-low">السعر: من الأقل</option>
+                <option value="price-high">السعر: من الأعلى</option>
+                <option value="rating">الأعلى تقييماً</option>
+                <option value="discount">الأكبر خصماً</option>
+              </select>
+            </div>
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="grid" title="شبكة">&#9783;</button>
+              <button class="view-btn" data-view="list" title="قائمة">&#9776;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEATURED BANNER -->
+        <div class="featured-banner" id="featuredBanner">
+          <div class="banner-bg"></div>
+          <div class="banner-content">
+            <span class="banner-badge">عرض خاص</span>
+            <h2>خصم يصل إلى <span class="discount-big">60%</span></h2>
+            <p>على منتجات مختارة - لفترة محدودة</p>
+            <button class="banner-btn" onclick="filterByCategory('giftcards')">تسوق الآن</button>
+          </div>
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <div class="products-grid" id="productsGrid"></div>
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon">&#128269;</div>
+          <h3>لم يتم العثور على نتائج</h3>
+          <p>جرب تغيير الفلاتر أو البحث بكلمات مختلفة</p>
+          <button class="btn btn-primary" onclick="resetFilters()">إعادة ضبط الفلاتر</button>
+        </div>
+
+        <!-- LOAD MORE -->
+        <div class="load-more" id="loadMore">
+          <button class="btn btn-outline" id="loadMoreBtn">عرض المزيد</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>&#128722; سلة التسوق</h3>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="empty-icon">&#128722;</div>
+        <p>سلتك فارغة</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+      <div class="cart-total">
+        <span>الإجمالي:</span>
+        <span class="total-price" id="totalPrice">$0.00</span>
+      </div>
+      <button class="btn btn-primary checkout-btn">إتمام الشراء</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer store-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">RaKaN<span>Store</span></div>
+          <p>متجر رقمي موثوق لشراء المنتجات والألعاب والبرامج بأفضل الأسعار</p>
+          <div class="social-links">
+            <a href="#" title="Twitter">&#128038;</a>
+            <a href="#" title="Discord">&#128172;</a>
+            <a href="#" title="YouTube">&#127909;</a>
+          </div>
+        </div>
+        <div>
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="store.html">المتجر</a></li>
+            <li><a href="#">العروض</a></li>
+            <li><a href="#">المنتجات الجديدة</a></li>
+            <li><a href="#">الأكثر مبيعاً</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>المساعدة</h4>
+          <ul>
+            <li><a href="#">الأسئلة الشائعة</a></li>
+            <li><a href="#">سياسة الإرجاع</a></li>
+            <li><a href="#">تواصل معنا</a></li>
+            <li><a href="#">شروط الاستخدام</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RaKaNStore. جميع الحقوق محفوظة.</p>
+        <div class="payment-icons">
+          <span title="Visa">&#128179;</span>
+          <span title="Mastercard">&#128179;</span>
+          <span title="PayPal">&#128177;</span>
+          <span title="Bitcoin">&#8383;</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/store.js"></script>
+</body>
+</html>
