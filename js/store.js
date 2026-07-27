@@ -178,12 +178,36 @@ function updateCategoryCounts() {
 
 // ===== FILTERS =====
 function initFilters() {
-  // Categories
+  // Category Tabs (top bar)
+  document.querySelectorAll('#categoryTabs .cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('#categoryTabs .cat-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentCategory = tab.dataset.category;
+
+      // Sync sidebar
+      document.querySelectorAll('#categoryList li').forEach(l => l.classList.remove('active'));
+      const sidebarItem = document.querySelector(`#categoryList li[data-category="${currentCategory}"]`);
+      if (sidebarItem) sidebarItem.classList.add('active');
+
+      document.getElementById('sectionTitle').textContent =
+        currentCategory === 'all' ? 'جميع المنتجات' : getCategoryName(currentCategory);
+      renderProducts();
+    });
+  });
+
+  // Categories (sidebar)
   document.querySelectorAll('#categoryList li').forEach(li => {
     li.addEventListener('click', () => {
       document.querySelectorAll('#categoryList li').forEach(l => l.classList.remove('active'));
       li.classList.add('active');
       currentCategory = li.dataset.category;
+
+      // Sync top tabs
+      document.querySelectorAll('#categoryTabs .cat-tab').forEach(t => t.classList.remove('active'));
+      const tabItem = document.querySelector(`#categoryTabs .cat-tab[data-category="${currentCategory}"]`);
+      if (tabItem) tabItem.classList.add('active');
+
       document.getElementById('sectionTitle').textContent =
         currentCategory === 'all' ? 'جميع المنتجات' : getCategoryName(currentCategory);
       renderProducts();
@@ -239,6 +263,11 @@ function resetFilters() {
   sortBy = 'featured';
   searchQuery = '';
 
+  // Reset top tabs
+  document.querySelectorAll('#categoryTabs .cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('#categoryTabs .cat-tab[data-category="all"]').classList.add('active');
+
+  // Reset sidebar
   document.querySelectorAll('#categoryList li').forEach(l => l.classList.remove('active'));
   document.querySelector('#categoryList li[data-category="all"]').classList.add('active');
   document.querySelectorAll('.type-list li').forEach(l => l.classList.remove('active'));
@@ -254,8 +283,17 @@ function resetFilters() {
 
 function filterByCategory(cat) {
   currentCategory = cat;
+
+  // Sync top tabs
+  document.querySelectorAll('#categoryTabs .cat-tab').forEach(t => t.classList.remove('active'));
+  const tabItem = document.querySelector(`#categoryTabs .cat-tab[data-category="${cat}"]`);
+  if (tabItem) tabItem.classList.add('active');
+
+  // Sync sidebar
   document.querySelectorAll('#categoryList li').forEach(l => l.classList.remove('active'));
-  document.querySelector(`#categoryList li[data-category="${cat}"]`).classList.add('active');
+  const sidebarItem = document.querySelector(`#categoryList li[data-category="${cat}"]`);
+  if (sidebarItem) sidebarItem.classList.add('active');
+
   document.getElementById('sectionTitle').textContent = getCategoryName(cat);
   renderProducts();
   window.scrollTo({ top: document.querySelector('.store-content').offsetTop - 80, behavior: 'smooth' });
