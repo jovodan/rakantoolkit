@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RaKaNToolKit - مجموعة شاملة من الأدوات الرقمية المجانية">
+  <title>RaKaNToolKit</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/rtl.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">RaKaNToolKit</a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active" data-i18n="nav_home">الرئيسية</a>
+        <a href="pages/islamic.html" data-i18n="nav_islamic">إسلاميات</a>
+        <a href="pages/calculators.html" data-i18n="nav_calculators">الحاسبات</a>
+        <a href="pages/images.html" data-i18n="nav_images">الصور</a>
+        <a href="pages/pdf.html" data-i18n="nav_pdf">ملفات PDF</a>
+        <a href="pages/internet-speedtest.html" data-i18n="nav_speed">قياس السرعة</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>RaKaNToolKit</h1>
+      <p data-i18n="hero_desc">مجموعة شاملة من الأدوات الرقمية المجانية لتسيير حياتك اليومية بكل سهولة وكفاءة</p>
+      <div class="search-box">
+        <input type="text" data-i18n-placeholder="hero_search" placeholder="ابحث عن أداة...">
+        <button>&#128269;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="services">
+    <div class="section-header">
+      <h2 data-i18n="section_categories">الأقسام</h2>
+      <p data-i18n="section_categories_desc">اختر القسم الذي تحتاجه</p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Islamic Tools -->
+      <a href="pages/islamic.html" class="card card-islamic">
+        <div class="card-icon">&#128330;</div>
+        <h3 data-i18n="nav_islamic">إسلاميات</h3>
+        <p data-i18n="card_islamic_desc">أوقات الصلاة، اتجاه القبلة، أذكار، مسبحة رقمية والمزيد</p>
+        <span class="card-tag">إسلاميات</span>
+      </a>
+
+      <!-- Calculators -->
+      <a href="pages/calculators.html" class="card card-calc">
+        <div class="card-icon">&#128290;</div>
+        <h3 data-i18n="nav_calculators">الحاسبات</h3>
+        <p data-i18n="card_calculators_desc">الحساب العادي، العلمية، حاسبة السعرات وأكثر</p>
+        <span class="card-tag" data-i18n="badge_calculators">الحاسبات</span>
+      </a>
+
+      <!-- Images -->
+      <a href="pages/images.html" class="card card-img">
+        <div class="card-icon">&#128247;</div>
+        <h3 data-i18n="nav_images">الصور</h3>
+        <p data-i18n="card_images_desc">ضغط الصور، تغيير الصيغة، تغيير الحجم، إزالة الخلفية والمزيد</p>
+        <span class="card-tag" data-i18n="badge_images">صور</span>
+      </a>
+
+      <!-- PDF -->
+      <a href="pages/pdf.html" class="card card-pdf">
+        <div class="card-icon">&#128196;</div>
+        <h3 data-i18n="nav_pdf">ملفات PDF</h3>
+        <p data-i18n="card_pdf_desc">دمج، فصل، تحويل الصور إلى PDF وضغط الملفات</p>
+        <span class="card-tag">PDF</span>
+      </a>
+
+      <!-- Speed Test -->
+      <a href="pages/internet-speedtest.html" class="card card-speed">
+        <div class="card-icon">&#128246;</div>
+        <h3 data-i18n="nav_speed">قياس السرعة</h3>
+        <p data-i18n="card_speed_desc">قياس سرعة التحميل والرفع وزمن الاستجابة للإنترنت</p>
+        <span class="card-tag" data-i18n="badge_network">شبكة</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">RaKaNToolKit</div>
+          <p data-i18n="footer_desc">مجموعة شاملة من الأدوات الرقمية المجانية</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer_services">الأقسام</h4>
+          <ul>
+            <li><a href="pages/islamic.html">إسلاميات</a></li>
+            <li><a href="pages/calculators.html">الحاسبات</a></li>
+            <li><a href="pages/images.html">الصور</a></li>
+            <li><a href="pages/pdf.html">ملفات PDF</a></li>
+            <li><a href="pages/internet-speedtest.html">قياس السرعة</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer_about">حول</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer_privacy">سياسة الخصوصية</a></li>
+            <li><a href="#" data-i18n="footer_terms">شروط الاستخدام</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RaKaNToolKit. <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

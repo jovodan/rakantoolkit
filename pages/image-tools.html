@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أدوات الصور - RaKaNToolKit</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaNToolKit</a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="islamic.html" data-i18n="nav_islamic">إسلاميات</a>
+        <a href="calculators.html" data-i18n="nav_calculators">الحاسبات</a>
+        <a href="images.html" class="active" data-i18n="nav_images">الصور</a>
+        <a href="pdf.html" data-i18n="nav_pdf">ملفات PDF</a>
+        <a href="internet-speedtest.html" data-i18n="nav_speed">قياس السرعة</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-container" style="max-width: 700px;">
+      <a href="images.html" class="back-link">&#8592; العودة لأدوات الصور</a>
+
+      <!-- TAB NAVIGATION -->
+      <div class="tool-tabs">
+        <button class="tool-tab active" data-tab="compress">ضغط الصور</button>
+        <button class="tool-tab" data-tab="resize">تغيير الحجم</button>
+        <button class="tool-tab" data-tab="convert">تغيير الصيغة</button>
+        <button class="tool-tab" data-tab="removebg">إزالة الخلفية</button>
+        <button class="tool-tab" data-tab="crop">قص الصور</button>
+        <button class="tool-tab" data-tab="rotate">تدوير</button>
+      </div>
+
+      <div class="calc-wrapper">
+        <div class="calc-display" style="background: linear-gradient(135deg, #7c3aed, #a855f7); min-height: 80px;">
+          <div class="calc-expression">أدوات الصور</div>
+          <div class="calc-result" style="font-size: 1.5rem;" id="toolTitle">ضغط الصور</div>
+        </div>
+
+        <!-- COMPRESS TAB -->
+        <div class="tool-panel active" id="panel-compress">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZone">
+              <div class="upload-icon">&#128228;</div>
+              <p>اسحب الصور هنا أو اضغط للاختيار</p>
+              <span class="upload-hint">JPG, PNG, WebP, GIF</span>
+              <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            </div>
+
+            <div class="compress-options">
+              <div class="form-group">
+                <label>جودة الضغط</label>
+                <div class="slider-group">
+                  <input type="range" id="qualitySlider" min="10" max="100" value="80">
+                  <span id="qualityValue">80%</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>صيغة الإخراج</label>
+                <select id="outputFormat">
+                  <option value="original">نفس الصيغة</option>
+                  <option value="jpeg">JPEG</option>
+                  <option value="png">PNG</option>
+                  <option value="webp">WebP</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="previewArea" style="display: none;">
+              <div class="preview-grid" id="previewGrid"></div>
+              <div class="file-stats" id="fileStats"></div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="compressBtn">
+                ضغط الصور
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESIZE TAB -->
+        <div class="tool-panel" id="panel-resize">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneResize">
+              <div class="upload-icon">&#128228;</div>
+              <p>اسحب صورة هنا لتغيير حجمها</p>
+              <span class="upload-hint">JPG, PNG, WebP</span>
+              <input type="file" id="fileInputResize" accept="image/*" hidden>
+            </div>
+
+            <div class="resize-options" style="display: none;" id="resizeOptions">
+              <div class="form-group">
+                <label>العرض الجديد (بكسل)</label>
+                <input type="number" id="newWidth" min="10" max="10000" value="800">
+              </div>
+              <div class="form-group">
+                <label>الارتفاع الجديد (بكسل)</label>
+                <input type="number" id="newHeight" min="10" max="10000" value="600">
+              </div>
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="keepRatio" checked>
+                  <span>الحفاظ على النسبة</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label>أحجام جاهزة</label>
+                <div class="preset-grid">
+                  <button class="preset-btn" data-w="1920" data-h="1080">1920×1080<br><small>Full HD</small></button>
+                  <button class="preset-btn" data-w="1280" data-h="720">1280×720<br><small>HD</small></button>
+                  <button class="preset-btn" data-w="800" data-h="600">800×600<br><small>Standard</small></button>
+                  <button class="preset-btn" data-w="400" data-h="400">400×400<br><small>Square</small></button>
+                  <button class="preset-btn" data-w="1080" data-h="1080">1080×1080<br><small>Instagram</small></button>
+                  <button class="preset-btn" data-w="1200" data-h="628">1200×628<br><small>Facebook</small></button>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="resizeBtn">
+                تغيير الحجم
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONVERT TAB -->
+        <div class="tool-panel" id="panel-convert">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneConvert">
+              <div class="upload-icon">&#128228;</div>
+              <p>اسحب الصور هنا لتحويل الصيغة</p>
+              <span class="upload-hint">JPG, PNG, WebP, GIF, BMP</span>
+              <input type="file" id="fileInputConvert" accept="image/*" multiple hidden>
+            </div>
+
+            <div class="convert-options" style="display: none;" id="convertOptions">
+              <div class="form-group">
+                <label>تحويل إلى</label>
+                <div class="format-grid">
+                  <label class="format-option">
+                    <input type="radio" name="convertTo" value="jpeg" checked>
+                    <span>JPEG</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="convertTo" value="png">
+                    <span>PNG</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="convertTo" value="webp">
+                    <span>WebP</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="convertTo" value="bmp">
+                    <span>BMP</span>
+                  </label>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="convertBtn">
+                تحويل الصيغة
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REMOVE BACKGROUND TAB -->
+        <div class="tool-panel" id="panel-removebg">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneRemoveBg">
+              <div class="upload-icon">&#10024;</div>
+              <p>اسحب الصورة هنا لإزالة الخلفية</p>
+              <span class="upload-hint">JPG, PNG, WebP</span>
+              <input type="file" id="fileInputRemoveBg" accept="image/*" hidden>
+            </div>
+
+            <div class="removebg-options" style="display: none;" id="removebgOptions">
+              <div class="removebg-compare">
+                <div class="compare-item">
+                  <span class="compare-label">الأصلية</span>
+                  <canvas id="removeBgOriginal"></canvas>
+                </div>
+                <div class="compare-item">
+                  <span class="compare-label">بدون خلفية</span>
+                  <canvas id="removeBgResult"></canvas>
+                </div>
+              </div>
+              <div class="removebg-controls">
+                <div class="form-group">
+                  <label>ensitivity (حساسية الإزالة)</label>
+                  <div class="slider-group">
+                    <input type="range" id="removeBgSensitivity" min="10" max="100" value="50">
+                    <span id="removeBgSensVal">50%</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>الخلفية الجديدة</label>
+                  <div class="format-grid">
+                    <label class="format-option">
+                      <input type="radio" name="bgType" value="transparent" checked>
+                      <span>شفافة</span>
+                    </label>
+                    <label class="format-option">
+                      <input type="radio" name="bgType" value="white">
+                      <span>أبيض</span>
+                    </label>
+                    <label class="format-option">
+                      <input type="radio" name="bgType" value="green">
+                      <span>أخضر</span>
+                    </label>
+                    <label class="format-option">
+                      <input type="radio" name="bgType" value="blue">
+                      <span>أزرق</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="removeBgBtn">
+                تحميل النتيجة
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CROP TAB -->
+        <div class="tool-panel" id="panel-crop">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneCrop">
+              <div class="upload-icon">&#128228;</div>
+              <p>اسحب صورة هنا لقصها</p>
+              <span class="upload-hint">JPG, PNG, WebP</span>
+              <input type="file" id="fileInputCrop" accept="image/*" hidden>
+            </div>
+            <div class="crop-options" style="display: none;" id="cropOptions">
+              <div class="crop-container" id="cropContainer">
+                <canvas id="cropCanvas"></canvas>
+                <div class="crop-overlay" id="cropOverlay"></div>
+              </div>
+              <div class="crop-presets">
+                <button class="preset-btn" data-ratio="free">حر</button>
+                <button class="preset-btn" data-ratio="1:1">1:1</button>
+                <button class="preset-btn" data-ratio="4:3">4:3</button>
+                <button class="preset-btn" data-ratio="16:9">16:9</button>
+                <button class="preset-btn" data-ratio="9:16">9:16</button>
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="cropBtn">
+                قص الصورة
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROTATE TAB -->
+        <div class="tool-panel" id="panel-rotate">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneRotate">
+              <div class="upload-icon">&#128228;</div>
+              <p>اسحب صورة هنا لتدويرها</p>
+              <span class="upload-hint">JPG, PNG, WebP</span>
+              <input type="file" id="fileInputRotate" accept="image/*" hidden>
+            </div>
+            <div class="rotate-options" style="display: none;" id="rotateOptions">
+              <div class="rotate-preview" id="rotatePreview">
+                <canvas id="rotateCanvas"></canvas>
+              </div>
+              <div class="rotate-controls">
+                <button class="btn-icon" id="rotateLeft" title="90°">&#8634;</button>
+                <button class="btn-icon" id="rotateRight" title="90°">&#8635;</button>
+                <button class="btn-icon" id="flipH" title="Horizontal">&#8596;</button>
+                <button class="btn-icon" id="flipV" title="Vertical">&#8597;</button>
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="rotateBtn">
+                حفظ النتيجة
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/tools/image-tools.js"></script>
+</body>
+</html>

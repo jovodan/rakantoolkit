@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أدوات PDF - RaKaNToolKit</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaNToolKit</a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="../index.html#services" data-i18n="nav_services">الخدمات</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-container" style="max-width: 700px;">
+      <a href="../index.html" class="back-link" data-i18n="calc_back">&#8592; العودة للرئيسية</a>
+
+      <!-- TAB NAVIGATION -->
+      <div class="tool-tabs">
+        <button class="tool-tab active" data-tab="merge" data-i18n="pdf_tab_merge">دمج ملفات</button>
+        <button class="tool-tab" data-tab="split" data-i18n="pdf_tab_split">فصل الصفحات</button>
+        <button class="tool-tab" data-tab="img2pdf" data-i18n="pdf_tab_img2pdf">صورة إلى PDF</button>
+        <button class="tool-tab" data-tab="compress" data-i18n="pdf_tab_compress">ضغط PDF</button>
+      </div>
+
+      <div class="calc-wrapper">
+        <div class="calc-display" style="background: linear-gradient(135deg, #dc2626, #f97316); min-height: 80px;">
+          <div class="calc-expression" data-i18n="card_pdf_tools">أدوات PDF</div>
+          <div class="calc-result" style="font-size: 1.5rem;" id="toolTitle" data-i18n="pdf_merge_title">دمج ملفات PDF</div>
+        </div>
+
+        <!-- MERGE TAB -->
+        <div class="tool-panel active" id="panel-merge">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneMerge">
+              <div class="upload-icon">&#128196;</div>
+              <p data-i18n="pdf_drop_merge">اسحب ملفات PDF هنا للدمج</p>
+              <span class="upload-hint">PDF files only</span>
+              <input type="file" id="fileInputMerge" accept=".pdf" multiple hidden>
+            </div>
+            <div class="merge-options" style="display: none;" id="mergeOptions">
+              <div class="file-list" id="mergeList"></div>
+              <p class="hint-text" data-i18n="pdf_merge_hint">اسحب لإعادة الترتيب</p>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="mergeBtn" data-i18n="pdf_merge_btn">
+                دمج الملفات
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPLIT TAB -->
+        <div class="tool-panel" id="panel-split">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneSplit">
+              <div class="upload-icon">&#128196;</div>
+              <p data-i18n="pdf_drop_split">اسحب ملف PDF لفصل الصفحات</p>
+              <span class="upload-hint">PDF file</span>
+              <input type="file" id="fileInputSplit" accept=".pdf" hidden>
+            </div>
+            <div class="split-options" style="display: none;" id="splitOptions">
+              <div class="split-mode">
+                <label class="format-option">
+                  <input type="radio" name="splitMode" value="all" checked>
+                  <span data-i18n="pdf_split_all">فصل كل صفحة</span>
+                </label>
+                <label class="format-option">
+                  <input type="radio" name="splitMode" value="range">
+                  <span data-i18n="pdf_split_range">نطاق محدد</span>
+                </label>
+                <label class="format-option">
+                  <input type="radio" name="splitMode" value="every">
+                  <span data-i18n="pdf_split_every">كل n صفحة</span>
+                </label>
+              </div>
+              <div class="form-group" id="rangeGroup" style="display: none;">
+                <label data-i18n="pdf_enter_range">أدخل النطاق (مثال: 1-5, 8, 10-12)</label>
+                <input type="text" id="pageRange" placeholder="1-5, 8, 10-12">
+              </div>
+              <div class="form-group" id="everyGroup" style="display: none;">
+                <label data-i18n="pdf_every_n">كل كم صفحة؟</label>
+                <input type="number" id="everyN" value="1" min="1">
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="splitBtn" data-i18n="pdf_split_btn">
+                فصل الصفحات
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE TO PDF TAB -->
+        <div class="tool-panel" id="panel-img2pdf">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZoneImg2Pdf">
+              <div class="upload-icon">&#128247;</div>
+              <p data-i18n="pdf_drop_img">اسحب الصور هنا لتحويلها إلى PDF</p>
+              <span class="upload-hint">JPG, PNG, WebP, BMP</span>
+              <input type="file" id="fileInputImg2Pdf" accept="image/*" multiple hidden>
+            </div>
+            <div class="img2pdf-options" style="display: none;" id="img2pdfOptions">
+              <div class="preview-grid" id="img2pdfPreview"></div>
+              <div class="form-group">
+                <label data-i18n="pdf_img_orientation">اتجاه الصفحة</label>
+                <div class="format-grid">
+                  <label class="format-option">
+                    <input type="radio" name="orientation" value="portrait" checked>
+                    <span data-i18n="pdf_portrait">عمودي</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="orientation" value="landscape">
+                    <span data-i18n="pdf_landscape">أفقي</span>
+                  </label>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="img2pdfBtn" data-i18n="pdf_img2pdf_btn">
+                إنشاء PDF
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPRESS TAB -->
+        <div class="tool-panel" id="panel-compress">
+          <div class="tool-body">
+            <div class="upload-zone" id="uploadZonePdfCompress">
+              <div class="upload-icon">&#128196;</div>
+              <p data-i18n="pdf_drop_compress">اسحب ملف PDF لضغطه</p>
+              <span class="upload-hint">PDF file</span>
+              <input type="file" id="fileInputPdfCompress" accept=".pdf" hidden>
+            </div>
+            <div class="compress-pdf-options" style="display: none;" id="pdfCompressOptions">
+              <div class="form-group">
+                <label data-i18n="pdf_quality_level">مستوى الجودة</label>
+                <div class="format-grid">
+                  <label class="format-option">
+                    <input type="radio" name="pdfQuality" value="high">
+                    <span data-i18n="pdf_quality_high">عالية</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="pdfQuality" value="medium" checked>
+                    <span data-i18n="pdf_quality_medium">متوسطة</span>
+                  </label>
+                  <label class="format-option">
+                    <input type="radio" name="pdfQuality" value="low">
+                    <span data-i18n="pdf_quality_low">منخفضة</span>
+                  </label>
+                </div>
+              </div>
+              <div class="file-stats" id="pdfStats"></div>
+              <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="pdfCompressBtn" data-i18n="pdf_compress_btn">
+                ضغط الملف
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/tools/pdf-tools.js"></script>
+</body>
+</html>

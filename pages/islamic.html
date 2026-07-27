@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إسلاميات - RaKaNToolKit</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+  <link rel="stylesheet" href="../css/islamic.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaNToolKit</a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="islamic.html" class="active" data-i18n="nav_islamic">إسلاميات</a>
+        <a href="calculators.html" data-i18n="nav_calculators">الحاسبات</a>
+        <a href="images.html" data-i18n="nav_images">الصور</a>
+        <a href="pdf.html" data-i18n="nav_pdf">ملفات PDF</a>
+        <a href="internet-speedtest.html" data-i18n="nav_speed">قياس السرعة</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="islamic-hero">
+    <h1>&#128330; أوقات ومناسبات إسلامية</h1>
+    <p>العد التنازلي للمناسبات الإسلامية + تحويل التواريخ</p>
+  </section>
+
+  <section class="islamic-section">
+
+    <!-- HIJRI DATE NOW -->
+    <div class="hijri-now">
+      <div class="hijri-date" id="hijriNow">--</div>
+      <div class="gregorian-date" id="gregorianNow">--</div>
+    </div>
+
+    <!-- NEXT 2 EVENTS HERO -->
+    <div class="next-events-row">
+
+      <!-- NEXT 1 -->
+      <div class="next-event-hero" id="hero1">
+        <div class="next-event-badge">المناسبة القادمة</div>
+        <div class="next-event-emoji" id="next1Emoji">&#127774;</div>
+        <div class="next-event-title" id="next1Title">--</div>
+        <div class="next-event-hijri" id="next1Hijri">--</div>
+        <div class="next-event-gregorian" id="next1Gregorian">--</div>
+        <div class="next-countdown">
+          <div class="nc-unit">
+            <span class="nc-number" id="next1-d">--</span>
+            <span class="nc-label">يوم</span>
+          </div>
+          <div class="nc-sep">:</div>
+          <div class="nc-unit">
+            <span class="nc-number" id="next1-h">--</span>
+            <span class="nc-label">ساعة</span>
+          </div>
+          <div class="nc-sep">:</div>
+          <div class="nc-unit">
+            <span class="nc-number" id="next1-m">--</span>
+            <span class="nc-label">دقيقة</span>
+          </div>
+          <div class="nc-sep">:</div>
+          <div class="nc-unit">
+            <span class="nc-number" id="next1-s">--</span>
+            <span class="nc-label">ثانية</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEXT 2 -->
+      <div class="next-event-hero" id="hero2">
+        <div class="next-event-badge next-badge-2">بعدها</div>
+        <div class="next-event-emoji" id="next2Emoji">&#127774;</div>
+        <div class="next-event-title" id="next2Title">--</div>
+        <div class="next-event-hijri" id="next2Hijri">--</div>
+        <div class="next-event-gregorian" id="next2Gregorian">--</div>
+        <div class="next-countdown">
+          <div class="nc-unit">
+            <span class="nc-number" id="next2-d">--</span>
+            <span class="nc-label">يوم</span>
+          </div>
+          <div class="nc-sep">:</div>
+          <div class="nc-unit">
+            <span class="nc-number" id="next2-h">--</span>
+            <span class="nc-label">ساعة</span>
+          </div>
+          <div class="nc-sep">:</div>
+          <div class="nc-unit">
+            <span class="nc-number" id="next2-m">--</span>
+            <span class="nc-label">دقيقة</span>
+          </div>
+          <div class="nc-sep">:</div>
+          <div class="nc-unit">
+            <span class="nc-number" id="next2-s">--</span>
+            <span class="nc-label">ثانية</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ALL EVENTS LIST -->
+    <div class="islamic-section-header" style="margin-top: 3rem;">
+      <h2>جميع المناسبات</h2>
+    </div>
+    <div class="events-list" id="eventsList"></div>
+
+    <!-- HIJRI -> GREGORIAN CONVERTER -->
+    <div class="islamic-section-header" style="margin-top: 4rem;">
+      <h2>تحويل التاريخ الهجري</h2>
+      <p>تحويل من التاريخ الهجري إلى الميلادي والعكس</p>
+    </div>
+
+    <div class="converter-box">
+      <div class="converter-header">
+        <h3>📅 محوّل التواريخ الهجري / الميلادي</h3>
+      </div>
+      <div class="converter-body">
+
+        <!-- HIJRI TO GREGORIAN -->
+        <div style="margin-bottom: 2rem;">
+          <div style="font-weight: 700; margin-bottom: 1rem; font-size: 1rem;">من هجري إلى ميلادي</div>
+          <div class="converter-row">
+            <div class="date-input-group">
+              <label>التاريخ الهجري</label>
+              <div class="date-inputs">
+                <input type="number" id="hDay" min="1" max="30" placeholder="اليوم">
+                <select id="hMonth">
+                  <option value="1">محرم</option>
+                  <option value="2">صفر</option>
+                  <option value="3">ربيع الأول</option>
+                  <option value="4">ربيع الثاني</option>
+                  <option value="5">جمادى الأولى</option>
+                  <option value="6">جمادى الآخرة</option>
+                  <option value="7">رجب</option>
+                  <option value="8">شعبان</option>
+                  <option value="9">رمضان</option>
+                  <option value="10">شوال</option>
+                  <option value="11">ذو القعدة</option>
+                  <option value="12">ذو الحجة</option>
+                </select>
+                <input type="number" id="hYear" min="1" max="1500" placeholder="السنة">
+              </div>
+            </div>
+            <div class="converter-arrow">&#8592;</div>
+            <div class="date-input-group">
+              <label>النتيجة (ميلادي)</label>
+              <div class="converter-result" id="hijriResult">
+                <span class="result-label">أدخل التاريخ الهجري</span>
+              </div>
+            </div>
+          </div>
+          <button class="converter-btn" id="hijriToGregBtn">تحويل</button>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 0 0 2rem;">
+
+        <!-- GREGORIAN TO HIJRI -->
+        <div>
+          <div style="font-weight: 700; margin-bottom: 1rem; font-size: 1rem;">من ميلادي إلى هجري</div>
+          <div class="converter-row">
+            <div class="date-input-group">
+              <label>التاريخ الميلادي</label>
+              <div class="date-inputs">
+                <input type="number" id="gDay" min="1" max="31" placeholder="اليوم">
+                <select id="gMonth">
+                  <option value="1">يناير</option>
+                  <option value="2">فبراير</option>
+                  <option value="3">مارس</option>
+                  <option value="4">أبريل</option>
+                  <option value="5">مايو</option>
+                  <option value="6">يونيو</option>
+                  <option value="7">يوليو</option>
+                  <option value="8">أغسطس</option>
+                  <option value="9">سبتمبر</option>
+                  <option value="10">أكتوبر</option>
+                  <option value="11">نوفمبر</option>
+                  <option value="12">ديسمبر</option>
+                </select>
+                <input type="number" id="gYear" min="1900" max="2100" placeholder="السنة">
+              </div>
+            </div>
+            <div class="converter-arrow">&#8592;</div>
+            <div class="date-input-group">
+              <label>النتيجة (هجري)</label>
+              <div class="converter-result" id="gregorianResult">
+                <span class="result-label">أدخل التاريخ الميلادي</span>
+              </div>
+            </div>
+          </div>
+          <button class="converter-btn" id="gregToHijriBtn">تحويل</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PRAYER NOTE -->
+    <div class="prayer-note">
+      <div class="note-icon">&#9770;</div>
+      <p>
+        "إنَّ الصَّلاةَ كانت على المؤمنين كتاباً موقوتاً"<br>
+        <small style="color: var(--text-light);">تذكير بالصلاة على وقتها - استخدم تطبيق الأوقات للحصول على مواقيت دقيقة لمدينتك</small>
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 RaKaNToolKit. <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/tools/islamic.js"></script>
+</body>
+</html>

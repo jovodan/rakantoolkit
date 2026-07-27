@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قياس سرعة الإنترنت - RaKaNToolKit</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+  <link rel="stylesheet" href="../css/speedtest.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaNToolKit</a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="../index.html#services" data-i18n="nav_services">الخدمات</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-container" style="max-width: 800px;">
+      <a href="../index.html" class="back-link" data-i18n="calc_back">&#8592; العودة للرئيسية</a>
+
+      <div class="speedtest-wrapper">
+        <!-- SERVER INFO -->
+        <div class="server-info">
+          <div class="server-item">
+            <span class="server-label" data-i18n="st_ping_label">Ping</span>
+            <span class="server-value" id="pingDisplay">--</span>
+          </div>
+          <div class="server-item">
+            <span class="server-label" data-i18n="st_jitter_label">Jitter</span>
+            <span class="server-value" id="jitterDisplay">--</span>
+          </div>
+        </div>
+
+        <!-- MAIN GAUGE -->
+        <div class="gauge-container">
+          <svg class="gauge-svg" viewBox="0 0 300 200">
+            <!-- Background arc -->
+            <path d="M 30 180 A 120 120 0 0 1 270 180" fill="none" stroke="#e2e8f0" stroke-width="14" stroke-linecap="round"/>
+            <!-- Speed arc -->
+            <path id="gaugeArc" d="M 30 180 A 120 120 0 0 1 270 180" fill="none" stroke="url(#gaugeGradient)" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 377"/>
+            <!-- Gradient -->
+            <defs>
+              <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#06b6d4"/>
+                <stop offset="50%" stop-color="#2563eb"/>
+                <stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="gauge-center">
+            <div class="gauge-value" id="gaugeValue">0</div>
+            <div class="gauge-unit" data-i18n="st_mbps">Mbps</div>
+          </div>
+        </div>
+
+        <!-- STATUS TEXT -->
+        <div class="test-status" id="testStatus" data-i18n="st_ready">جاهز للاختبار</div>
+
+        <!-- START BUTTON -->
+        <button class="start-btn" id="startBtn" data-i18n="st_start">ابدأ القياس</button>
+
+        <!-- RESULTS CARDS -->
+        <div class="results-grid" id="resultsGrid" style="display: none;">
+          <div class="result-card-st">
+            <div class="result-icon download">&#8595;</div>
+            <div class="result-label" data-i18n="st_download">التحميل</div>
+            <div class="result-value" id="downloadResult">--</div>
+            <div class="result-unit" data-i18n="st_mbps">Mbps</div>
+          </div>
+          <div class="result-card-st">
+            <div class="result-icon upload">&#8593;</div>
+            <div class="result-label" data-i18n="st_upload">الرفع</div>
+            <div class="result-value" id="uploadResult">--</div>
+            <div class="result-unit" data-i18n="st_mbps">Mbps</div>
+          </div>
+          <div class="result-card-st">
+            <div class="result-icon ping">&#9201;</div>
+            <div class="result-label" data-i18n="st_ping">الزمن</div>
+            <div class="result-value" id="pingResult">--</div>
+            <div class="result-unit" data-i18n="st_ms">ms</div>
+          </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div class="test-progress" id="testProgress" style="display: none;">
+          <div class="progress-steps">
+            <div class="step" id="stepPing">
+              <div class="step-dot"></div>
+              <span data-i18n="st_step_ping">قياس Ping</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="stepDownload">
+              <div class="step-dot"></div>
+              <span data-i18n="st_step_download">قياس التحميل</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="stepUpload">
+              <div class="step-dot"></div>
+              <span data-i18n="st_step_upload">قياس الرفع</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTORY -->
+        <div class="history-section" id="historySection" style="display: none;">
+          <h3 data-i18n="st_history">الاختبارات السابقة</h3>
+          <div class="history-list" id="historyList"></div>
+        </div>
+
+        <!-- NETWORK INFO -->
+        <div class="network-info" id="networkInfo" style="display: none;">
+          <h3 data-i18n="st_network_info">معلومات الشبكة</h3>
+          <div class="network-grid">
+            <div class="network-item">
+              <span class="network-label" data-i18n="st_connection_type">نوع الاتصال</span>
+              <span class="network-value" id="connType">--</span>
+            </div>
+            <div class="network-item">
+              <span class="network-label" data-i18n="st_downlink">Downlink</span>
+              <span class="network-value" id="connDownlink">--</span>
+            </div>
+            <div class="network-item">
+              <span class="network-label" data-i18n="st_rtt">RTT المقدر</span>
+              <span class="network-value" id="connRTT">--</span>
+            </div>
+            <div class="network-item">
+              <span class="network-label" data-i18n="st_data_saver">توفير البيانات</span>
+              <span class="network-value" id="connSaveData">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/tools/speedtest.js"></script>
+</body>
+</html>

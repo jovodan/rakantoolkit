@@ -1,0 +1,28 @@
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .nav-links a::after {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .search-box input {
+  text-align: right;
+}
+
+[dir="rtl"] .logo {
+  direction: ltr;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .nav-links {
+    text-align: center;
+  }
+}

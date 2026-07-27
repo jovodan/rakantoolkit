@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الحاسبات - RaKaNToolKit</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaNToolKit</a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="islamic.html" data-i18n="nav_islamic">إسلاميات</a>
+        <a href="calculators.html" class="active" data-i18n="nav_calculators">الحاسبات</a>
+        <a href="images.html" data-i18n="nav_images">الصور</a>
+        <a href="pdf.html" data-i18n="nav_pdf">ملفات PDF</a>
+        <a href="internet-speedtest.html" data-i18n="nav_speed">قياس السرعة</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-badge" data-i18n="badge_calculators">الحاسبات</span>
+        <h2 data-i18n="nav_calculators">الحاسبات</h2>
+        <p data-i18n="card_calculators_desc">اختر الحاسبة التي تحتاجها</p>
+      </div>
+
+      <div class="cards-grid">
+        <a href="standard-calculator.html" class="card">
+          <div class="card-icon">&#128290;</div>
+          <h3 data-i18n="card_standard_calc">الحاسبة العادية</h3>
+          <p data-i18n="card_standard_calc_desc">العمليات الحسابية الأساسية والنسب المئوية بواجهة سهلة وسريعة</p>
+          <span class="card-tag" data-i18n="badge_calculators">الحاسبات</span>
+        </a>
+
+        <a href="scientific-calculator.html" class="card">
+          <div class="card-icon">&#128300;</div>
+          <h3 data-i18n="card_scientific_calc">الحاسبة العلمية</h3>
+          <p data-i18n="card_scientific_calc_desc">الدوال الرياضية المتقدمة بما في ذلك المثلثات واللوغاريتمات والأسس</p>
+          <span class="card-tag" data-i18n="badge_calculators">الحاسبات</span>
+        </a>
+
+        <a href="calorie-calculator.html" class="card">
+          <div class="card-icon">&#127860;</div>
+          <h3 data-i18n="card_calorie_calc">حاسبة السعرات الحرارية</h3>
+          <p data-i18n="card_calorie_calc_desc">احسب احتياطيك اليومي من السعرات بناءً على بياناتك الشخصية ومستوى نشاطك</p>
+          <span class="card-tag" data-i18n="badge_calculators">الحاسبات</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 RaKaNToolKit. <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

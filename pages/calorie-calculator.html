@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة السعرات الحرارية - RaKaNToolKit</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/rtl.css">
+  <link rel="stylesheet" href="../css/calculators.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">RaKaNToolKit</a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="../index.html#services" data-i18n="nav_services">الخدمات</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <button class="lang-btn">
+            <span class="lang-current-label">العربية</span>
+            <span>&#9662;</span>
+          </button>
+          <div class="lang-dropdown">
+            <button data-lang="ar">العربية</button>
+            <button data-lang="en">English</button>
+            <button data-lang="fr">Français</button>
+          </div>
+        </div>
+        <button class="btn-icon theme-toggle" title="Toggle theme">&#127769;</button>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-container" style="max-width: 520px;">
+      <a href="../index.html" class="back-link" data-i18n="calc_back">&#8592; العودة للرئيسية</a>
+      <div class="calc-wrapper">
+        <div class="calc-display" style="background: linear-gradient(135deg, #059669, #10b981); min-height: 80px;">
+          <div class="calc-expression" id="calorieTitle" data-i18n="card_calorie_calc" style="font-size: 1.1rem;">حاسبة السعرات الحرارية</div>
+          <div class="calc-result" id="bmrDisplay" style="font-size: 2rem;">--</div>
+        </div>
+        <div class="calorie-form">
+          <div class="form-group">
+            <label data-i18n="calc_gender">الجنس</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="gender" id="male" value="male" checked>
+                <label for="male" data-i18n="calc_male">&#9794; ذكر</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="gender" id="female" value="female">
+                <label for="female" data-i18n="calc_female">&#9792; أنثى</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="calc_age">العمر (سنة)</label>
+            <input type="number" id="age" min="10" max="120" value="25" placeholder="25">
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="calc_weight">الوزن (كجم)</label>
+            <input type="number" id="weight" min="20" max="300" value="70" placeholder="70">
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="calc_height">الطول (سم)</label>
+            <input type="number" id="height" min="100" max="250" value="170" placeholder="170">
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="calc_activity">مستوى النشاط</label>
+            <div class="activity-level">
+              <div class="activity-option">
+                <input type="radio" name="activity" id="act1" value="1.2" checked>
+                <label for="act1" data-i18n="calc_sedentary">خامل</label>
+              </div>
+              <div class="activity-option">
+                <input type="radio" name="activity" id="act2" value="1.375">
+                <label for="act2" data-i18n="calc_light">نشاط خفيف</label>
+              </div>
+              <div class="activity-option">
+                <input type="radio" name="activity" id="act3" value="1.55">
+                <label for="act3" data-i18n="calc_moderate">نشاط متوسط</label>
+              </div>
+              <div class="activity-option">
+                <input type="radio" name="activity" id="act4" value="1.725">
+                <label for="act4" data-i18n="calc_active">نشيط</label>
+              </div>
+              <div class="activity-option">
+                <input type="radio" name="activity" id="act5" value="1.9">
+                <label for="act5" data-i18n="calc_very_active">نشيط جداً</label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem;" id="calcBtn" data-i18n="calc_calculate">
+            احسب
+          </button>
+
+          <div id="resultSection" style="display: none;">
+            <div class="result-card">
+              <h3 data-i18n="calc_result_daily">الاحتياطي اليومي</h3>
+              <div class="big-number" id="dailyResult">0</div>
+              <div class="unit" data-i18n="calc_kcal">سعرة/يوم</div>
+            </div>
+            <div class="result-details">
+              <div class="detail-item">
+                <div class="label" data-i18n="calc_result_bmr">السعرات基础ية</div>
+                <div class="value" id="bmrResult">0</div>
+              </div>
+              <div class="detail-item">
+                <div class="label" data-i18n="calc_result_loss">لخسارة الوزن</div>
+                <div class="value" id="lossResult" style="color: #ef4444;">0</div>
+              </div>
+              <div class="detail-item">
+                <div class="label" data-i18n="calc_result_gain">لزيادة الوزن</div>
+                <div class="value" id="gainResult" style="color: #10b981;">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/calculators/calorie.js"></script>
+</body>
+</html>
