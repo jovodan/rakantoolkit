@@ -47,6 +47,26 @@
   align-items: center;
 }
 
+.tool-body .form-group {
+  width: 100%;
+  max-width: 500px;
+}
+
+.tool-body .format-grid {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.tool-body .preset-grid {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.tool-body .slider-group {
+  width: 100%;
+  max-width: 500px;
+}
+
 /* ===== UPLOAD ZONE ===== */
 .upload-zone {
   border: 2px dashed var(--border);
@@ -58,6 +78,7 @@
   background: var(--bg);
   width: 100%;
   max-width: 500px;
+  margin: 0 auto;
 }
 
 .upload-zone:hover,
@@ -88,7 +109,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   width: 100%;
   max-width: 500px;
 }
@@ -144,7 +165,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 1rem auto;
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -178,6 +199,7 @@
   padding: 1.5rem;
   width: 100%;
   max-width: 500px;
+  margin: 0 auto;
 }
 
 .slider-group {
@@ -300,10 +322,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 1rem 0;
+  margin: 1rem auto;
   max-height: 300px;
   overflow-y: auto;
   width: 100%;
+  max-width: 500px;
 }
 
 .file-list-item {
@@ -366,6 +389,9 @@
   color: var(--text-light);
   font-size: 0.85rem;
   margin-bottom: 1rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===== CROP ===== */
@@ -393,8 +419,10 @@
 .crop-presets {
   display: flex;
   gap: 0.5rem;
-  margin: 1rem 0;
+  margin: 1rem auto;
   flex-wrap: wrap;
+  justify-content: center;
+  max-width: 500px;
 }
 
 /* ===== ROTATE ===== */
@@ -429,6 +457,9 @@
   gap: 0.5rem;
   margin-bottom: 1rem;
   width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .split-mode .format-option span {
@@ -440,7 +471,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
+  max-width: 500px;
+  width: 100%;
 }
 
 .compare-item {
@@ -463,16 +496,19 @@
 }
 
 .removebg-controls {
-  margin: 1rem 0;
+  margin: 1rem auto;
+  max-width: 500px;
+  width: 100%;
 }
 
 .removebg-status {
   text-align: center;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 1rem auto;
   border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 500;
+  max-width: 500px;
 }
 
 .removebg-status.processing {
