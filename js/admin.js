@@ -17,7 +17,6 @@ function loadAdminProducts() {
   if (saved) {
     adminProducts = JSON.parse(saved);
   } else {
-    // Fallback: load from main store.js data
     adminProducts = typeof products !== 'undefined' ? [...products] : [];
   }
 }
@@ -27,35 +26,39 @@ function saveAdminProducts() {
 }
 
 // ===== TABS =====
+function switchToTab(tabName) {
+  document.querySelectorAll('.admin-tab-btn, .admin-mobile-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll(`[data-tab="${tabName}"]`).forEach(b => b.classList.add('active'));
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tabName).classList.add('active');
+
+  if (tabName === 'add-product') {
+    if (!editingId) resetForm();
+    document.getElementById('formTitle').textContent = editingId ? 'تعديل المنتج' : 'إضافة منتج جديد';
+    document.getElementById('submitBtn').textContent = editingId ? 'حفظ التعديلات' : '✓ إضافة المنتج';
+    document.getElementById('cancelEdit').style.display = editingId ? 'block' : 'none';
+  }
+
+  if (tabName === 'products') {
+    renderProductsTable();
+  }
+}
+
 function initAdminTabs() {
-  document.querySelectorAll('.admin-nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  document.querySelectorAll('.admin-tab-btn, .admin-mobile-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchToTab(btn.dataset.tab));
+  });
 
-      if (btn.dataset.tab === 'add-product') {
-        if (!editingId) resetForm();
-        document.getElementById('formTitle').textContent = editingId ? 'تعديل المنتج' : 'إضافة منتج جديد';
-        document.getElementById('submitBtn').textContent = editingId ? 'حفظ التعديلات' : 'إضافة المنتج';
-        document.getElementById('cancelEdit').style.display = editingId ? 'block' : 'none';
-      }
-
-      if (btn.dataset.tab === 'products') {
-        renderProductsTable();
-      }
-
-      if (btn.dataset.tab === 'dashboard') {
-        updateDashboardStats();
-      }
-    });
+  document.getElementById('btnAddNew').addEventListener('click', () => {
+    editingId = null;
+    resetForm();
+    switchToTab('add-product');
   });
 
   document.getElementById('cancelEdit').addEventListener('click', () => {
     editingId = null;
     resetForm();
-    document.querySelector('.admin-nav-btn[data-tab="products"]').click();
+    switchToTab('products');
   });
 }
 
@@ -85,9 +88,16 @@ function renderProductsTable(filter = '') {
   const categoryNames = { games: 'ألعاب', software: 'برامج', giftcards: 'قسائم هدايا', subscriptions: 'اشتراكات', courses: 'دورات' };
   const categoryBadge = { games: 'badge-games', software: 'badge-software', giftcards: 'badge-giftcards', subscriptions: 'badge-subscriptions', courses: 'badge-courses' };
   const categoryIcons = { games: '🎮', software: '💻', giftcards: '🎁', subscriptions: '🔔', courses: '📚' };
+  const typeNames = { product: 'منتج رقمي', subscription: 'اشتراك', service: 'خدمة' };
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:3rem; color:var(--cosmic-text-dim);">لا توجد منتجات</td></tr>`;
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center; padding:3rem; color:var(--cosmic-text-dim);">
+          <div style="font-size:2.5rem; margin-bottom:0.5rem;">📦</div>
+          ${filter ? 'لا توجد نتائج بحث' : 'لا توجد منتجات بعد'}
+        </td>
+      </tr>`;
     return;
   }
 
@@ -101,18 +111,18 @@ function renderProductsTable(filter = '') {
             <div class="product-thumb">${categoryIcons[p.category] || '📦'}</div>
             <div class="product-cell-info">
               <strong>${name}</strong>
-              <small>ID: ${p.id}</small>
+              <small>${p.brand || ''}</small>
             </div>
           </div>
         </td>
         <td><span class="badge ${categoryBadge[p.category]}">${categoryNames[p.category]}</span></td>
-        <td>${p.type || 'منتج رقمي'}</td>
+        <td>${typeNames[p.type] || p.type}</td>
         <td class="price-cell">$${p.price}</td>
         <td class="rating-stars">${stars} ${p.rating}</td>
         <td>
           <div class="action-btns">
-            <button class="btn-edit" onclick="editProduct(${p.id})">&#9998; تعديل</button>
-            <button class="btn-delete" onclick="deleteProduct(${p.id})">&#10005; حذف</button>
+            <button class="btn-edit" onclick="editProduct(${p.id})">تعديل</button>
+            <button class="btn-delete" onclick="deleteProduct(${p.id})">حذف</button>
           </div>
         </td>
       </tr>
@@ -161,11 +171,8 @@ function saveProduct() {
 
   saveAdminProducts();
   updateDashboardStats();
-  renderProductsTable();
   resetForm();
-
-  // Switch to products tab
-  document.querySelector('.admin-nav-btn[data-tab="products"]').click();
+  switchToTab('products');
 }
 
 function editProduct(id) {
@@ -188,11 +195,7 @@ function editProduct(id) {
   document.getElementById('pFeatured').checked = p.featured || false;
   document.getElementById('pOriginal').checked = p.original !== false;
 
-  document.getElementById('formTitle').textContent = 'تعديل المنتج';
-  document.getElementById('submitBtn').textContent = 'حفظ التعديلات';
-  document.getElementById('cancelEdit').style.display = 'block';
-
-  document.querySelector('.admin-nav-btn[data-tab="add-product"]').click();
+  switchToTab('add-product');
 }
 
 function deleteProduct(id) {
@@ -209,7 +212,7 @@ function resetForm() {
   document.getElementById('productForm').reset();
   document.getElementById('editId').value = '';
   document.getElementById('formTitle').textContent = 'إضافة منتج جديد';
-  document.getElementById('submitBtn').textContent = 'إضافة المنتج';
+  document.getElementById('submitBtn').textContent = '✓ إضافة المنتج';
   document.getElementById('cancelEdit').style.display = 'none';
 }
 
