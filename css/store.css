@@ -1086,6 +1086,16 @@
     overflow-y: auto;
   }
 
+  [dir="rtl"] .store-sidebar {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  [dir="rtl"] .store-sidebar.show {
+    transform: translateX(0);
+  }
+
   .store-sidebar.show {
     transform: translateX(0);
   }
@@ -1095,6 +1105,21 @@
   }
 
   .filter-toggle {
+    display: block;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: none;
+  }
+
+  .sidebar-overlay.show {
     display: block;
   }
 }

@@ -246,13 +246,21 @@ function initFilters() {
   });
 
   // Filter toggle (mobile)
-  document.getElementById('filterToggle').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('show');
-  });
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
 
-  document.getElementById('closeSidebar').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.remove('show');
-  });
+  function openSidebar() {
+    sidebar.classList.add('show');
+    overlay.classList.add('show');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('show');
+    overlay.classList.remove('show');
+  }
+
+  document.getElementById('filterToggle').addEventListener('click', openSidebar);
+  document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
 }
 
 function resetFilters() {
